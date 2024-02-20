@@ -9,14 +9,14 @@ INSERT INTO action(person_id, description)
 VALUES (1, 'Долго сидел'),
        (1, 'Уставился в путоту');
 
-INSERT INTO thought(person_id, content)
-VALUES (1, 'Фрэнк Пул первым из людей попадет на Сатурн');
+INSERT INTO thought(person_id, content, emotion)
+VALUES (1, 'Фрэнк Пул первым из людей попадет на Сатурн', 'Грусть');
 
-INSERT INTO astronaut(person_id)
-VALUES (1), (2);
+INSERT INTO astronaut(person_id, rank)
+VALUES (1, 'Капитан'), (2, 'Штурман');
 
-INSERT INTO location(name, coordinates)
-VALUES ('Сатурн', POINT(214124, 98782178));
+INSERT INTO location(name, coordinates, first_astronaut_id)
+VALUES ('Сатурн', POINT(214124, 98782178), 2);
 
 INSERT INTO spaceship(kind)
 VALUES ('Capsule');

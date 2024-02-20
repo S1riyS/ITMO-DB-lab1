@@ -2,6 +2,7 @@ BEGIN;
 
 CREATE TYPE SEX as ENUM ('M', 'F');
 CREATE TYPE KIND as ENUM ('Capsule', 'Millennium Falcon');
+CREATE TYPE EMOTION as ENUM ('Грусть');
 
 CREATE TABLE person (
   id SERIAL PRIMARY KEY,
@@ -21,18 +22,21 @@ CREATE TABLE thought (
   id SERIAL PRIMARY KEY,
   person_id INT NOT NULL REFERENCES person(id),
   content VARCHAR(511) NOT NULL,
+  emotion EMOTION NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE astronaut (
   id SERIAL PRIMARY KEY,
-  person_id INT NOT NULL REFERENCES person(id)
+  person_id INT NOT NULL REFERENCES person(id),
+  rank VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE location (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  coordinates POINT
+  coordinates POINT,
+  first_astronaut_id INTEGER NOT NULL REFERENCES astronaut(id)
 );
 
 CREATE TABLE spaceship (
